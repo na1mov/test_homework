@@ -1,62 +1,46 @@
-class Animal {
-    private double weight;
-    private int age;
 
-    public Animal() {
-        this.weight = 0.0d;
-        this.age = 0;
-    }
-
-    public String say() {
-        return "Мяу, гав, хрю, кря!";
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-}
-
-class Fox extends Animal {
-    private String color;
-
-    public Fox(String color) {
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    @Override
-    public String say() {
-        return "*Кричит по лисьи*";
-    }
-}
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Practicum {
     public static void main(String[] args) {
-        Fox fox = new Fox("рыжий");
-        fox.setWeight(5.93d);
-        fox.setAge(5);
-        System.out.println("Вес лисы - " + fox.getWeight());
-        System.out.println("Возраст лисы - " + fox.getAge());
-        System.out.println("Цвет лисы - " + fox.getColor());
-        System.out.println("Лиса говорит - " + fox.say());
+        List<String> tokens = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (tokens.size() < 2) {
+            tokens.add(scanner.nextLine());
+        }
+        scanner.close();
+
+        int strLength = Integer.parseInt(tokens.get(0));
+        List<String> strList = tokens.get(1).codePoints()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.toList());
+
+        List<Integer> aList = new ArrayList<>();
+        List<Integer> bList = new ArrayList<>();
+        List<Integer> cList = new ArrayList<>();
+        List<Integer> dList = new ArrayList<>();
+
+        for (int i = 0; i < strList.size(); i++) {
+            switch (strList.get(i)) {
+                case "a":
+                    aList.add(i);
+                    break;
+                case "b":
+                    bList.add(i);
+                    break;
+                case "c":
+                    cList.add(i);
+                    break;
+                case "d":
+                    dList.add(i);
+            }
+        }
+
+        System.out.println(aList);
+        System.out.println(bList);
+        System.out.println(cList);
+        System.out.println(dList);
     }
-} 
+}
